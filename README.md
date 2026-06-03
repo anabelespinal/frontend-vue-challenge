@@ -1,10 +1,13 @@
 # Kambista Frontend developer!
 
-👋 Somos [Kambista](https://kambista.com) y estamos en la búsqueda de un nuevo miembro para nuestro equipo de tech que nos ayude a seguir ofreciendo la mejor experiencia de cambio, para esto hemos preparado un reto técnico el cual pueden completar y enviarnos el resultado con las instrucciones de entrega.
+👋 Somos [Kambista](https://kambista.com) y estamos en la búsqueda de un nuevo miembro para nuestro equipo de tech que
+nos ayude a seguir ofreciendo la mejor experiencia de cambio, para esto hemos preparado un reto técnico el cual pueden
+completar y enviarnos el resultado con las instrucciones de entrega.
 
 ## Caso
 
-Se necesita desarrollar una aplicación de intercambio de divisas, siguiendo el diseño proporcionado en este [Figma](https://www.figma.com/design/CkUU2J5WZNACGQVy3vFr45/Untitled?node-id=0-1&p=f&t=3p9NiX4qWDMnL8g9-0).
+Se necesita desarrollar una aplicación de intercambio de divisas, siguiendo el diseño proporcionado en
+este [Figma](https://www.figma.com/design/CkUU2J5WZNACGQVy3vFr45/Untitled?node-id=0-1&p=f&t=3p9NiX4qWDMnL8g9-0).
 
 ## Tecnologías
 
@@ -43,7 +46,8 @@ Manejo de errores específicos (ej: DNI duplicado)
 
 ### II: Módulo de Transacciones
 
-1: **Pantalla principal**: Es la vista inicial donde se muestra la calculadora de cotización del cambio y se inicia la operación con:
+1: **Pantalla principal**: Es la vista inicial donde se muestra la calculadora de cotización del cambio y se inicia la
+operación con:
 
 - Consumo de API para obtener datos de tipo de cambio.
 - Consumo de API para calcular una operación.
@@ -51,7 +55,8 @@ Manejo de errores específicos (ej: DNI duplicado)
 
 2: **Agregar información adicional del cambio**:
 
-- En esta vista por una parte se deben seleccionar los bancos que se usarán para el intercambio de divisas y el origen de fondos de acuerdo a mock anexo.
+- En esta vista por una parte se deben seleccionar los bancos que se usarán para el intercambio de divisas y el origen
+  de fondos de acuerdo a mock anexo.
 - Por otra parte se debe agregar la cuenta de destino con:
   Selector de banco (usar mock proporcionado)
   Tipo de cuenta (ahorro/crédito)
@@ -86,42 +91,43 @@ https://api.kambista.com/v1/exchange/calculates?originCurrency=PEN&destinationCu
 Se incluyen dos archivos JSON con datos de prueba:
 
 1. **`bankAccounts.json`**
-   - Listado completo de bancos
-   - Uso:
-     - Selector de banco al agregar cuenta
-     - Elección de entidad financiera en operaciones
+    - Listado completo de bancos
+    - Uso:
+        - Selector de banco al agregar cuenta
+        - Elección de entidad financiera en operaciones
 
 2. **`sourceFunds.json`**
-   - Listado de orígenes de fondos
-   - Uso:
-     - Selector al crear operaciones
+    - Listado de orígenes de fondos
+    - Uso:
+        - Selector al crear operaciones
 
 > \*Los archivos se encuentran en `/mocks`.
 
 -**Estrategias a implementar para manejo de errores**
 
 1. **Errores generales de los Formularios**:
-   - Validación en tiempo real para:
-     - Formato de email correcto.
-     - Nombre sin caracteres especiales ni números.
-     - Formato de documento de identificación acorde a DNI (8 dígitos), CE (9 dígitos), PASAPORTE (de 8 a 15 caracteres)
-     - Teléfono (9 dígitos)
-     - Fecha de nacimiento (Solo registro valido para mayores de edad)
-     - Número de cuenta bancaria solo dígitos.
+    - Validación en tiempo real para:
+        - Formato de email correcto.
+        - Nombre sin caracteres especiales ni números.
+        - Formato de documento de identificación acorde a DNI (8 dígitos), CE (9 dígitos), PASAPORTE (de 8 a 15
+          caracteres)
+        - Teléfono (9 dígitos)
+        - Fecha de nacimiento (Solo registro valido para mayores de edad)
+        - Número de cuenta bancaria solo dígitos.
 2. **Errores de API**:
 
 - Considerar errores en servicios como:
-  - Número de documento o celular en uso
-  - Error general en la respuesta del servicio.
+    - Número de documento o celular en uso
+    - Error general en la respuesta del servicio.
 
 ```typescript
 interface APIError {
-  success: false
-  data: {
-    name: 'DUPLICATE_DNI' | 'INVALID_PHONE' | 'SERVER_ERROR' // Ejemplos
-    title: string
-    message: string
-  }
+    success: false
+    data: {
+        name: 'DUPLICATE_DNI' | 'INVALID_PHONE' | 'SERVER_ERROR' // Ejemplos
+        title: string
+        message: string
+    }
 }
 ```
 

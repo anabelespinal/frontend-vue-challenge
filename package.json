@@ -10,8 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@formkit/nuxt": "^2.0.0",
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "nuxt": "^4.4.6",
+    "pinia": "^2.2.6",
     "vue": "^3.5.34",
     "vue-router": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "sass": "^1.100.0",
+    "typescript": "^5.7.3"
   }
 }
