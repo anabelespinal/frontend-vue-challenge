@@ -13,6 +13,7 @@
     "@formkit/nuxt": "^2.0.0",
     "@nuxt/fonts": "0.14.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@pinia/nuxt": "^0.11.3",
     "nuxt": "^4.4.6",
     "pinia": "^2.2.6",
     "vue": "^3.5.34",

@@ -12,9 +12,12 @@
       @apply font-montserrat text-k-gray-60 font-medium text-[14px];
     }
     &-input {
-      @apply w-full px-[16px] py-[12px] border-[1px] border-k-gray-25 rounded-[8px];
+      @apply w-full px-[16px] py-[12px] border-[1px] border-k-gray-25 rounded-[8px] outline-none;
       &::placeholder {
         @apply font-montserrat font-medium text-[14px] text-k-gray-40;
+      }
+      &:focus {
+        @apply border-k-gray-40;
       }
     }
     &-messages-container {
@@ -26,7 +29,8 @@
   }
 
   .common-btn {
-    @apply w-full bg-k-primary opacity-60 hover:opacity-100 border-[1px] border-k-gray-25 rounded-[8px] text-[14px] text-black font-medium p-[15px];
+    @apply w-full bg-k-primary border-[1px] border-k-gray-25 rounded-[8px] text-[14px] text-black font-medium p-[15px];
+    //&:not(:disabled) {}
   }
 
   .btn-kambista {

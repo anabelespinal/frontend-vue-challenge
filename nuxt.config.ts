@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
-  modules: ['@formkit/nuxt', '@nuxtjs/tailwindcss', '@nuxt/fonts'],
-  css: ['~/assets/styles/custom_tailwind/components.scss'],
+  modules: ['@formkit/nuxt', '@nuxtjs/tailwindcss', '@nuxt/fonts', '@pinia/nuxt'],
+  css: ['~/assets/styles/common/common.scss'],
   vite: {
     css: {
       preprocessorOptions: {
