@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@formkit/nuxt": "^2.0.0",
+    "@nuxt/fonts": "0.14.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "nuxt": "^4.4.6",
     "pinia": "^2.2.6",

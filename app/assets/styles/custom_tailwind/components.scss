@@ -1,0 +1,35 @@
+//@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .common-form {
+    &-field {
+      @apply mb-[20px]
+    }
+    &-label {
+      @apply font-montserrat text-k-gray-60 font-medium text-[14px];
+    }
+    &-input {
+      @apply w-full px-[16px] py-[12px] border-[1px] border-k-gray-25 rounded-[8px];
+      &::placeholder {
+        @apply font-montserrat font-medium text-[14px] text-k-gray-40;
+      }
+    }
+    &-messages-container {
+      @apply mt-2
+    }
+    &-error {
+      @apply font-montserrat font-normal text-[14px] text-k-red;
+    }
+  }
+
+  .common-btn {
+    @apply w-full bg-k-primary opacity-60 hover:opacity-100 border-[1px] border-k-gray-25 rounded-[8px] text-[14px] text-black font-medium p-[15px];
+  }
+
+  .btn-kambista {
+    @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg;
+  }
+}

@@ -1,5 +1,6 @@
 <template>
   <div class="flex min-h-screen min-w-full max-w-full flex-row items-center justify-between">
+    <h1 class="sr-only">Kambista</h1>
     <div class="min-h-screen bg-k-blue-gradient w-1/2 hidden lg:flex flex-col items-center justify-center">
     <!--      TODO: add content here -->
     </div>
