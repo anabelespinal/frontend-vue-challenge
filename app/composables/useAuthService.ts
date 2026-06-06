@@ -34,7 +34,16 @@ export const useAuthService = () => {
     }
   }
 
+  function logout(): Promise<void> {
+    try {
+      authStore.clearAuthUser();
+    } catch (error) {
+      throw error
+    }
+  }
+
   return {
-    login
+    login,
+    logout
   }
 }

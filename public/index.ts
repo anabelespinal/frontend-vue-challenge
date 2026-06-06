@@ -5,6 +5,7 @@ const CREDENTIALS = {
 
 const LOGGED_CREDENTIALS = {
   email: 'yorlanaespinal@gmail.com',
+  name: 'Anabel Espinal',
   onboarding: false
 }
 

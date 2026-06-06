@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type {AuthUser} from "~/types";
 import { AUTH_USER_KEY } from "~/constants";
+import {removeLocalStorage} from "~/utils/localStorage";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -13,7 +14,7 @@ export const useAuthStore = defineStore('auth', {
     isOnboardingCompleted: (state) => !!state.user?.onboarding,
   },
   actions: {
-    setAuthUser(payload: AuthUser, addToLS: boolean = true) {
+    setAuthUser(payload: AuthUser) {
       if (!payload) {
         return;
       }
@@ -25,6 +26,10 @@ export const useAuthStore = defineStore('auth', {
     },
     completeInitialized() {
       this.isInitialized = true;
-    }
+    },
+    clearAuthUser() {
+      this.user = null;
+      removeLocalStorage(AUTH_USER_KEY);
+    },
   }
 });

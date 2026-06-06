@@ -6,18 +6,35 @@
 @layer components {
   .common-form {
     &-field {
-      @apply mb-[20px]
+      @apply mb-[20px];
     }
     &-label {
       @apply font-montserrat text-k-gray-60 font-medium text-[14px];
     }
     &-input {
       @apply w-full px-[16px] py-[12px] border-[1px] border-k-gray-25 rounded-[8px] outline-none;
-      &::placeholder {
+      &::placeholder,
+      &--date::-webkit-datetime-edit-text,
+      &--date::-webkit-datetime-edit-month-field,
+      &--date::-webkit-datetime-edit-day-field,
+      &--date::-webkit-datetime-edit-year-field {
         @apply font-montserrat font-medium text-[14px] text-k-gray-40;
       }
       &:focus {
         @apply border-k-gray-40;
+      }
+      &--date {
+        &::-webkit-calendar-picker-indicator {
+          display: none !important;
+          -webkit-appearance: none;
+        }
+
+        &::-webkit-datetime-edit-text,
+        &::-webkit-datetime-edit-month-field,
+        &::-webkit-datetime-edit-day-field,
+        &::-webkit-datetime-edit-year-field {
+          @apply uppercase;
+        }
       }
     }
     &-messages-container {
@@ -26,6 +43,13 @@
     &-error {
       @apply font-montserrat font-normal text-[14px] text-k-red;
     }
+    &-checkbox {
+      @apply h-[16px] w-[16px] rounded-[10px] border-k-gray-25 text-k-secondary focus:ring-k-secondary focus:ring-offset-0 transition-colors cursor-pointer bg-white;
+      accent-color: #060F26;
+      &-label {
+        @apply font-montserrat text-k-secondary font-medium text-[12px];
+      }
+    }
   }
 
   .common-btn {
@@ -33,7 +57,17 @@
     //&:not(:disabled) {}
   }
 
-  .btn-kambista {
-    @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg;
+  .simple-btn {
+    @apply inline-flex items-center w-auto bg-transparent border-none font-montserrat text-[14px] md:text-[16px] text-k-secondary font-semibold;
+    &:hover {
+      @apply text-k-secondary-light;
+    }
+  }
+
+  .simple-header {
+    @apply bg-white flex items-center px-[12px] py-[8px] md:pt-[21px] md:pr-[48px] md:pb-[19px] md:pl-[40px] sticky top-0 shadow-sm z-20;
+  }
+  .common-title {
+    @apply font-montserrat text-[20px] md:text-[24px] font-bold text-k-secondary;
   }
 }

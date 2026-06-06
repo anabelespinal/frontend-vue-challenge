@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <h1>DEFAULT LAYOUT</h1>
+  <div class="min-h-screen min-w-full max-w-full">
     <slot/>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 </script>
 
 <style scoped>
-div {
-  background-color: green;
-}
 </style>

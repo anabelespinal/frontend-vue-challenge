@@ -15,6 +15,9 @@ export default {
         'k-primary': '#00E3C2',
         'k-primary-light': '#5BE2C4',
         'k-primary-ultra-light': '#B2E7DF',
+        'k-secondary': '#060F26',
+        'k-secondary-light': '#2D313D',
+        'k-secondary-lighter': '#606B89',
       },
       backgroundImage: {
         'k-blue-gradient': 'linear-gradient(20.06deg, #182233 26.91%, #1D2744 45.75%, #293571 83.1%, #344197 110.93%)',
