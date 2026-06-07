@@ -54,7 +54,9 @@
 
   .common-btn {
     @apply w-full bg-k-primary border-[1px] border-k-gray-25 rounded-[8px] text-[14px] text-black font-medium p-[15px];
-    //&:not(:disabled) {}
+    &:disabled {
+      @apply opacity-60 cursor-not-allowed;
+    }
   }
 
   .simple-btn {
@@ -69,5 +71,8 @@
   }
   .common-title {
     @apply font-montserrat text-[20px] md:text-[24px] font-bold text-k-secondary;
+  }
+  .common-paragraph {
+    @apply font-montserrat text-[16px] font-semibold text-k-gray-60;
   }
 }

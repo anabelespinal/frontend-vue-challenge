@@ -10,5 +10,20 @@
 </template>
 
 <script setup lang="ts">
-const authStore = useAuthStore()
+import { USER_KEY } from "~/constants";
+
+const authStore = useAuthStore();
+const userStore = useUserStore();
+
+onMounted(async () => {
+  console.log('APP MOUNTED');
+  if (authStore.isInitialized &&
+    authStore.isAuthenticated &&
+    authStore.isOnboardingCompleted) {
+    const storedUser = await getLocalStorage(USER_KEY);
+    if (storedUser) {
+      userStore.setUser(getLocalStorage(USER_KEY))
+    }
+  }
+})
 </script>

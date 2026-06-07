@@ -1,8 +1,13 @@
 <template>
-  <div>HOME PAGE</div>
+  <PageBase :classes="{'onboarding-page': true}">
+    <div class="flex flex-col items-center pt-0 md:pt-[35px] w-full">
+      <div class="mb-[30px] max-w-full w-full sm:w-[520px]">
+        <ExchangeSimulator/>
+      </div>
+    </div>
+  </PageBase>
 </template>
-<script setup>
-definePageMeta({
-  requiresAuth: true
-})
+<script setup lang="ts">
 </script>
+<style lang="scss" scoped>
+</style>

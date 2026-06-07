@@ -1,5 +1,6 @@
 import {CREDENTIALS, LOGGED_CREDENTIALS} from '~/constants';
 import type {AuthUser, LoginRequest, APIError} from "~/types";
+import {APIErrorTypes} from "~/types";
 import {useAuthStore} from "~/stores/useAuthStore";
 
 export const useAuthService = () => {
@@ -18,7 +19,7 @@ export const useAuthService = () => {
         const error:APIError = {
           success: false,
           data: {
-            name: 'SERVER_ERROR',
+            name: APIErrorTypes.SERVER_ERROR,
             title: 'incorrect_credentials',
             message: 'Las credenciales son incorrectas, intenta otra vez.',
           }
@@ -34,7 +35,7 @@ export const useAuthService = () => {
     }
   }
 
-  function logout(): Promise<void> {
+  function logout() {
     try {
       authStore.clearAuthUser();
     } catch (error) {

@@ -36,3 +36,78 @@ export interface APIError {
     message: string
   }
 }
+
+export enum CurrencyTypes {
+  USD = 'USD',
+  PEN = 'PEN',
+}
+
+export type AMOUNT = number;
+
+export interface Savings {
+  amount: AMOUNT | string
+  currency: string
+}
+
+export interface FetchRateHttpResponse {
+  bid: AMOUNT
+  bidChange: AMOUNT
+  ask: AMOUNT
+  askChange: AMOUNT
+  date: string
+  author: string
+  created: string
+}
+
+export interface CalculateExchangeResponse {
+  rate: AMOUNT
+  exchange: AMOUNT
+  tc: { bid: AMOUNT; ask: AMOUNT }
+  data: { operate: boolean; msg: string }
+  savings: Savings
+}
+
+export interface CurrentRateResponse {
+  bid: AMOUNT
+  ask: AMOUNT
+}
+
+export interface Bank {
+  id: number | string
+  name: string
+  alias: string
+}
+
+export enum BankAccountTypes {
+  AHORROS = 'ahorros',
+  CORRIENTE = 'corriente',
+}
+
+export interface BankAccount {
+  id: string
+  bank: Bank
+  type: BankAccountTypes
+  number: string
+  alias: string
+  currency: CurrencyTypes
+}
+
+export interface SourceFund {
+  _id: number
+  name: string
+}
+
+export interface Transaction {
+  id?: string
+  sendAmount: number | string
+  receiveAmount: number | string
+  exchangeRate: number
+  sendCurrency: CurrencyTypes
+  receiveCurrency: CurrencyTypes
+  coupon?: string
+  bank?: Bank
+  account?: BankAccount
+  sourceFund?: SourceFund
+  code?: string
+  savings?: Savings
+}

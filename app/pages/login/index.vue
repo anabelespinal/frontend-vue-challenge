@@ -54,11 +54,13 @@
       <button
         type="submit"
         class="common-btn mt-4 mb-2"
-        :disabled="!state.valid || loading"
-        :class="{
-          'opacity-60': !state.valid || loading,
-          'cursor-not-allowed': !state.valid || loading
-        }">
+        :disabled="!state.valid || loading">
+
+<!--        :class="{-->
+<!--        'opacity-60': !state.valid || loading,-->
+<!--        'cursor-not-allowed': !state.valid || loading-->
+<!--        }"-->
+
         {{ loading ? 'INICIANDO SESIÓN' : 'INICIA SESIÓN' }}
       </button>
 
@@ -75,6 +77,7 @@ import type {LoginRequest} from "~/types";
 
 definePageMeta({
   layout: 'register',
+  noRequiresAuth: true
 })
 
 const { login } = useAuthService()
@@ -83,10 +86,9 @@ const loading = ref<boolean>(false);
 const errorMessage = ref<string | null >(null);
 
 const handleLogin = async (formData:any) => {
-  loading.value = true;
-  errorMessage.value = null;
-
   try {
+    loading.value = true;
+    errorMessage.value = null;
 
     const data:LoginRequest = {
       email: formData.email,

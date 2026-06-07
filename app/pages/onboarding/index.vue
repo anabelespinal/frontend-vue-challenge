@@ -11,7 +11,7 @@
         <FormKit
           type="form"
           :actions="false" f
-          @submit="handleLogin"
+          @submit="handleSubmit"
           form-class="onboarding-page__wrapper-form"
           v-slot="{ state }">
           <FormKit
@@ -133,10 +133,6 @@
             <span class="common-form-error">{{errorMessage}}</span>
           </div>
 
-          <div class="mx-auto my-[20px] flex justify-center">
-            <NuxtLink to="/" class="login-page__forgot-link">¿Olvidaste tu contraseña?</NuxtLink>
-          </div>
-
           <button
             type="submit"
             class="common-btn mt-4 mb-2"
@@ -145,26 +141,22 @@
               'opacity-60': !state.valid || loading,
               'cursor-not-allowed': !state.valid || loading
             }">
-            {{ loading ? 'INICIANDO SESIÓN' : 'INICIA SESIÓN' }}
+            {{ loading ? 'CARGANDO...' : 'CONTINUAR' }}
           </button>
-
-          <div class="mx-auto my-[20px] flex justify-center">
-            <span class="login-page__register-link">¿No tienes cuenta? <NuxtLink to="/" class="underline">Registrate aquí</NuxtLink></span>
-          </div>
-
         </FormKit>
       </div>
     </div>
   </PageBase>
 </template>
 <script setup lang="ts">
-import {DocumentTypes} from "~/types";
+import {type AuthUser, DocumentTypes, type User} from "~/types";
 import {alphaSpacesOnly} from "~/utils/validations";
-// import {n} from "vue-router/dist/index-BQLwgiyK";
+import {getLocalStorage} from "~/utils/localStorage";
+import {AUTH_USER_KEY} from "~/constants";
 
-definePageMeta({
-  requiresAuth: true
-})
+const { updateUser } = useUserService();
+const authStore = useAuthStore();
+
 const selectedDocumentType = ref<string | number | null>(null);
 const loading = ref<boolean>(false);
 const errorMessage = ref<string | null >(null);
@@ -182,6 +174,7 @@ const eighteenYearsAgo = computed(() => {
   date.setFullYear(date.getFullYear() - 18)
   return date.toISOString().split('T')[0]
 });
+//------
 
 const isDocumentDNI = computed(() => {
   return selectedDocumentType.value === DocumentTypes.DNI;
@@ -220,21 +213,42 @@ const documentNumLengthError = computed(() => {
 
   return 'Longitud de caracteres inválida.'
 });
+//-------
 
 const handleDocumentNumChange = () => {
-  console.log('handleDocumentNumChange');
   if(!selectedDocumentType.value) {
     isDocumentRequired.value = true;
   }
-
 }
 
 const onSelectDocumentType = () => {
   isDocumentRequired.value = false;
 }
 
-const handleLogin = async (formData:any) => {
-  console.log('formData ONBOARDING', formData);
+const handleSubmit = async (formData:any) => {
+  try {
+    loading.value = true;
+    errorMessage.value = null;
+
+    const data:User = {
+      fullName: formData.fullname,
+      documentType: selectedDocumentType.value as DocumentTypes,
+      documentNumber: formData.documentNumber,
+      phoneNumber: formData.phoneNumber,
+      birthdate: formData.birthdate,
+    }
+
+    await updateUser(data);
+    const authUser:AuthUser = await getLocalStorage(AUTH_USER_KEY);
+    await authStore.setAuthUser({...authUser, onboarding: true});
+    await navigateTo('/onboarding/success');
+
+  } catch (error:any) {
+    const errorData = error?.data;
+    errorMessage.value = errorData?.data.message;
+  } finally {
+    loading.value = false;
+  }
 };
 
 </script>

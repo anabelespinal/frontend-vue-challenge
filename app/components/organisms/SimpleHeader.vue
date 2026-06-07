@@ -1,12 +1,18 @@
 <template>
   <div class="flex justify-between items-center w-full">
     <KambistaLogo/>
-    <SimpleHeaderButton/>
+    <SimpleHeaderButton v-if="showButon"/>
   </div>
 </template>
 
-<script setup>
-import SimpleHeaderButton from "~/components/molecules/SimpleHeaderButton.vue";
+<script setup lang="ts">
+interface Props {
+  showButon?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  showButon: true,
+})
 </script>
 
 <style scoped>

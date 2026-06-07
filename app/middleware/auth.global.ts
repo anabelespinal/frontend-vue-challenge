@@ -20,7 +20,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         })
     }
 
-    const pageRequiresAuth = !!to.meta.requiresAuth;
+    const pageRequiresAuth = !to.meta.noRequiresAuth;
     const isLogged = authStore.isAuthenticated;
     const isOnboardingCompleted = authStore.isOnboardingCompleted;
 
