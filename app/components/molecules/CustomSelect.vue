@@ -8,8 +8,8 @@
       type="button"
       @click="toggleDropdown"
       @keydown.escape="closeDropdown"
-      class="common-form-input inline-flex items-center justify-between"
-      :class="{ 'border-k-gray-40': isOpen }"
+      class="common-form-input inline-flex items-center justify-between bg-white"
+      :class="selectClasses"
     >
       <span :class="{ 'text-slate-400': !modelValue }">
         {{ selectedLabel || placeholder }}
@@ -80,10 +80,12 @@ interface Props {
   label?: string
   placeholder?: string
   classes?: string
+  selectClass?: object | undefined
 }
 
 const props = withDefaults(defineProps<Props>(), {
   placeholder: 'Seleccionar',
+  selectClass: undefined,
 })
 
 const emit = defineEmits(['update:modelValue', 'onSelectOption'])
@@ -94,6 +96,14 @@ const selectContainer = ref<HTMLElement | null>(null)
 const selectedLabel = computed(() => {
   const matched = props.options.find(opt => opt.value === props.modelValue);
   return matched ? matched.label : '';
+})
+
+const selectClasses = computed(() => {
+  const c = {'border-k-gray-24': isOpen}
+  if (props.selectClass) {
+    return {...c, ...props.selectClass}
+  }
+  return c;
 })
 
 const toggleDropdown = () => (isOpen.value = !isOpen.value)

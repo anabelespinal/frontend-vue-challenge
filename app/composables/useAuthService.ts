@@ -7,7 +7,6 @@ export const useAuthService = () => {
   const authStore = useAuthStore();
 
   async function login(data:LoginRequest): Promise<void> {
-    console.log('login service', data);
 
     try {
       //TODO: Call a real endpoint

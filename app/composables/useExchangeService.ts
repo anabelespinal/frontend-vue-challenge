@@ -1,10 +1,7 @@
 import {FETCH_RATE_ENDPOINT, CALCULATE_ENDPOINT} from '~/constants';
-import type {User, APIError, CurrentRateResponse, FetchRateHttpResponse, CurrencyTypes, AMOUNT, CalculateExchangeResponse} from "~/types";
-import {DocumentTypes, APIErrorTypes} from "~/types";
-// import {useUserStore} from "~/stores/useUserStore";
+import type { CurrentRateResponse, FetchRateHttpResponse, CurrencyTypes, AMOUNT, CalculateExchangeResponse} from "~/types";
 
 export const useExchangeService = () => {
-  // const userStore = useUserStore();
 
   async function fetchCurrentRateService(): Promise<CurrentRateResponse> {
     try {
@@ -22,7 +19,6 @@ export const useExchangeService = () => {
     amount:AMOUNT
   ): Promise<CalculateExchangeResponse> {
     try {
-      console.log("fetchCurrentRateService called", sendCurrency, receiveCurrency, amount);
       const url = `${CALCULATE_ENDPOINT}?originCurrency=${sendCurrency ?? 0}&destinationCurrency=${receiveCurrency ?? 0}&amount=${amount}&active=S`
       const res:CalculateExchangeResponse = await $fetch<CalculateExchangeResponse>(url)
       return res;

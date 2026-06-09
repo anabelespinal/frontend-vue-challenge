@@ -1,6 +1,6 @@
 import type {AMOUNT} from "~/types";
-
-export const convertFormatAmount = (n: AMOUNT) => n.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+import {CurrencyTypes} from "~/types";
+import {CURRENCY} from "~/constants";
 
 export const getCleanNumber = (value: number | string): number => {
   const num = typeof value === 'string' ? parseFloat(value) : value;
@@ -15,3 +15,7 @@ export const displayWithTwoDecimals = (value: number | string): string => {
 
 export const convertFormatWithComma = (n: AMOUNT) => n.toLocaleString('en-US')
 
+export const formatAmountAndCurrency = (n: number, currency: keyof typeof CurrencyTypes) => {
+  const currencySymbol = CURRENCY[`${currency}`].symbol;
+  return `${currencySymbol} ${n.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`
+}

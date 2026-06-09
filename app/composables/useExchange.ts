@@ -1,8 +1,6 @@
-import {DEFAULT_SELL_RATE, DUPLICATED_DNI_NUMBER, DEFAULT_SEND_AMOUNT} from '~/constants';
-import type {User, APIError, Savings, AMOUNT, CalculateExchangeResponse} from "~/types";
-import {DocumentTypes, APIErrorTypes, CurrencyTypes} from "~/types";
-// import {useUserStore} from "~/stores/useUserStore";
-// import {useUserStore} from "~/composables/useUserStore";
+import {DEFAULT_SELL_RATE, DEFAULT_SEND_AMOUNT} from '~/constants';
+import type {Savings, AMOUNT, CalculateExchangeResponse} from "~/types";
+import {CurrencyTypes} from "~/types";
 
 export const useExchange = () => {
 
@@ -35,7 +33,6 @@ export const useExchange = () => {
 
   const fetchRate = async () => {
     const res = await fetchCurrentRateService();
-    console.log('fetchCurrentRate', res);
 
     buyRate.value  = res.bid
     sellRate.value = res.ask
@@ -49,7 +46,6 @@ export const useExchange = () => {
       error.value = null
 
       const res:CalculateExchangeResponse = await calculateExchangeService(sendCurrency.value, receiveCurrency.value, sa);
-      console.log('calculateExchange', res);
 
       if (onlySavings) {
         savings.value = {...res.savings, ...{amount: parseFloat(res.savings.amount as string ?? '0')}} as Savings;
@@ -83,10 +79,6 @@ export const useExchange = () => {
 
     await calculateExchange();
   };
-
-  // onMounted(async () => {
-  //   await fetchRate();
-  // })
 
   return {
     buyRate,

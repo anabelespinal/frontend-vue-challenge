@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 interface Props {
-  classes: object
+  classes?: object
 }
 
 const props = defineProps<Props>()

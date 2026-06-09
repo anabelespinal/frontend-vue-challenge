@@ -1,5 +1,5 @@
 <template>
-  <PageBase :classes="{'onboarding-page': true}">
+  <PageBase>
 
     <template #simpleHeader>
       <SimpleHeader :show-buton="false"/>
@@ -8,12 +8,12 @@
     <div class="flex flex-col w-full justify-center items-center pt-0 md:pt-[35px]">
       <div class="max-w-[397px] flex flex-col w-full justify-center items-center">
         <img
-          :src="`/images/phone.png`"
+          src="/images/phone.png"
           alt="Phone"
           class="w-[126px] flex-shrink-0 object-contain mb-[30px]"
         />
         <h2 class="common-title mx-auto text-center mb-[30px]">
-          ¡Felicitaciones {{ userStore.getUser.fullName }}, tu perfil ha sido creado!
+          ¡Felicitaciones {{ userStore?.getUser?.fullName }}, tu perfil ha sido creado!
         </h2>
         <p class="common-paragraph text-center mx-auto mb-[64px]">
           Ya puedes empezar a Kambiar con la mejor tasa del mercado

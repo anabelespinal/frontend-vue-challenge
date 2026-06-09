@@ -11,6 +11,9 @@
     &-label {
       @apply font-montserrat text-k-gray-60 font-medium text-[14px];
     }
+    &-help {
+      @apply font-montserrat text-k-gray-60 font-medium text-[12px] mt-2;
+    }
     &-input {
       @apply w-full px-[16px] py-[12px] border-[1px] border-k-gray-25 rounded-[8px] outline-none;
       &::placeholder,
@@ -35,6 +38,12 @@
         &::-webkit-datetime-edit-year-field {
           @apply uppercase;
         }
+      }
+      &--file {
+        background-image: url("/icons/upload-file-icon.png");
+        background-size: 27px;
+        background-position: calc(100% - 10px) center;
+        @apply bg-no-repeat text-left px-[10px] py-[9px] pr-[50px] font-montserrat font-normal text-[14px] text-k-gray-60 inline-flex items-center;
       }
     }
     &-messages-container {

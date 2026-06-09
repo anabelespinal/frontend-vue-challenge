@@ -3,7 +3,7 @@
     <h2 class="login-page__title">Inicia Sesión</h2>
     <FormKit
       type="form"
-      :actions="false" f
+      :actions="false"
       @submit="handleLogin"
       form-class="login-page__wrapper-form"
       v-slot="{ state }">
@@ -55,11 +55,6 @@
         type="submit"
         class="common-btn mt-4 mb-2"
         :disabled="!state.valid || loading">
-
-<!--        :class="{-->
-<!--        'opacity-60': !state.valid || loading,-->
-<!--        'cursor-not-allowed': !state.valid || loading-->
-<!--        }"-->
 
         {{ loading ? 'INICIANDO SESIÓN' : 'INICIA SESIÓN' }}
       </button>
@@ -114,7 +109,7 @@ const handleLogin = async (formData:any) => {
     }
   }
   &__title {
-    @apply font-montserrat text-black font-normal lg:font-bold mb-5 text-[24px] lg:text-[28px];
+    @apply font-montserrat text-black font-normal lg:font-bold mb-[70px] lg:mb-5 text-[24px] lg:text-[28px] text-center lg:text-left;
   }
   &__forgot-link {
     @apply font-montserrat text-k-gray-60 font-medium text-[12px] underline;

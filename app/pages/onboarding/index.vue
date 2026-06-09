@@ -1,5 +1,5 @@
 <template>
-  <PageBase :classes="{'onboarding-page': true}">
+  <PageBase :classes="{'onboarding-page': true}" v-if="renderPage">
 
     <template #simpleHeader>
       <SimpleHeader/>
@@ -157,6 +157,8 @@ import {AUTH_USER_KEY} from "~/constants";
 const { updateUser } = useUserService();
 const authStore = useAuthStore();
 
+const renderPage = ref<boolean>(false);
+
 const selectedDocumentType = ref<string | number | null>(null);
 const loading = ref<boolean>(false);
 const errorMessage = ref<string | null >(null);
@@ -250,6 +252,14 @@ const handleSubmit = async (formData:any) => {
     loading.value = false;
   }
 };
+
+onBeforeMount(() => {
+  if(authStore.isOnboardingCompleted){
+    navigateTo('/')
+  } else {
+    renderPage.value = true;
+  }
+});
 
 </script>
 <style lang="scss" scoped>

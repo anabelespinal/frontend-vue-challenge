@@ -93,7 +93,7 @@ export interface BankAccount {
 }
 
 export interface SourceFund {
-  _id: number
+  _id: string
   name: string
 }
 
@@ -110,4 +110,5 @@ export interface Transaction {
   sourceFund?: SourceFund
   code?: string
   savings?: Savings
+  completed?: boolean
 }

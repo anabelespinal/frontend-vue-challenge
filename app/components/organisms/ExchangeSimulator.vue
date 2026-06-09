@@ -22,7 +22,9 @@
         :default-amount="sendAmount"
         :current-currency-id="sendCurrency"
       />
-      <button>change</button>
+      <div class="relative w-full h-[15px]">
+        <button class="toggle-exchange-btn" @click="changeExchangeType"></button>
+      </div>
       <ExchangeField
         label-field="Entonces recibes"
         @onChangeInput="onChangeReceiveAmountInput"
@@ -76,12 +78,9 @@
 </template>
 
 <script setup lang="ts">
-
-// import {convertFormatWithComma} from "~/utils/utils";
 import type {Transaction} from "~/types";
 
 const transactionStore = useTransactionStore();
-
 
 const {
   buyRate,
@@ -100,7 +99,6 @@ const {
 } = useExchange();
 
 async function onChangeSendAmountInput(val: string) {
-  console.log('onChangeSendAmountInput', val);
   sendAmount.value = val;
   await calculateExchange();
 }
@@ -127,7 +125,7 @@ async function getTransactionData() {
 }
 
 const startTransaction = async () => {
-  transactionStore.clearTransaction();
+  transactionStore.clearCurrentTransaction();
 
   const data = await getTransactionData();
   transactionStore.setTransaction(data as Partial<Transaction>);
@@ -142,7 +140,6 @@ defineExpose({
 onMounted(async () => {
   await fetchRate();
   await calculateExchange();
-  console.log('buyRate', buyRate.value, sellRate.value, coins.value)
 })
 
 </script>
@@ -155,6 +152,11 @@ onMounted(async () => {
   }
   &__body {
     @apply px-[15px] sm:px-[50px] py-[32px] bg-white rounded-b-[8px];
+  }
+  .toggle-exchange-btn {
+    background-image:  url("/icons/swith-exchange.png");
+    background-size: 100px;
+    @apply bg-no-repeat bg-center w-[80px] h-[80px] absolute right-[110px] top-[-30px];
   }
 }
 </style>

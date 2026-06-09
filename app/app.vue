@@ -16,7 +16,6 @@ const authStore = useAuthStore();
 const userStore = useUserStore();
 
 onMounted(async () => {
-  console.log('APP MOUNTED');
   if (authStore.isInitialized &&
     authStore.isAuthenticated &&
     authStore.isOnboardingCompleted) {

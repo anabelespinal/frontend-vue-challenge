@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type {User} from "~/types";
 import { USER_KEY } from "~/constants";
-// import {removeLocalStorage} from "~/utils/localStorage";
 
 export const useUserStore = defineStore('user', {
   state: () => ({

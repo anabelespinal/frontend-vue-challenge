@@ -1,18 +1,16 @@
 <template>
-  <PageBase :classes="{'onboarding-page': true}">
-<!--    <template #simpleHeader>-->
-<!--      <SimpleHeader :show-buton="false"/>-->
-<!--    </template>-->
-
-
+  <PageBase v-if="renderPage">
     <div class="flex w-full justify-center pt-0 md:pt-[35px]">
       <div class="onboarding-page__wrapper-content">
-        <h2 class="common-title mx-auto text-center mb-[32px]">Mi Transferencia...</h2>
+        <h2 class="common-title mx-auto text-center mb-[32px]">{{ `Mi operación #${transaction.id}` }}</h2>
+        <br>
+        <div>Estado: {{transaction.completed ? 'Completado' : 'Inconpleto'}}</div>
+        <div><strong>More Detail...</strong></div>
         <div>
           <button
-            @click="goToReceiptPage"
+            @click="goToStep"
             class="common-btn mt-4 mb-2">
-            VER CONSTANCIA
+            CONTINUAR
           </button>
         </div>
       </div>
@@ -20,9 +18,20 @@
   </PageBase>
 </template>
 <script setup lang="ts">
-const goToReceiptPage = async () => {
-  await navigateTo('/transactions/operation/1/congrats');
+definePageMeta({
+  middleware: 'valid-transaction-id',
+})
+
+const route = useRoute();
+const {getTransactionById, renderPage, transaction} = useTransaction();
+
+const goToStep = async () => {
+  await navigateTo(`/transactions/operation/${transaction.value.id}/${transaction.value.completed ? 'congrats' : 'detail'}`);
 }
+
+onBeforeMount(async () => {
+  await getTransactionById(route.params.operationId as string);
+})
 </script>
 <style lang="scss" scoped>
 </style>
